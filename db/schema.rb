@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_200011) do
+ActiveRecord::Schema.define(version: 2020_03_25_200606) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "line_1", limit: 1024, null: false
+    t.string "line_2", limit: 1024
+    t.string "line_3", limit: 1024
+    t.string "zip_code", limit: 256, null: false
+    t.string "town", limit: 1024, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -27,13 +37,12 @@ ActiveRecord::Schema.define(version: 2020_03_22_200011) do
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
     t.string "name"
     t.string "nickname"
     t.string "image"
     t.string "email"
-
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
