@@ -5,7 +5,7 @@ RSpec.describe ContactInformation, e: :model do
     expect(ContactInformation.table_name).to eq('contact_information')
   end
 
-  subject { FactoryBot.create(:contact_information) }
+  subject { FactoryBot.build(:contact_information) }
 
   describe 'validations' do
     %i[email name].each do |field|
@@ -16,4 +16,6 @@ RSpec.describe ContactInformation, e: :model do
       it { should validate_length_of(field).is_at_most(64) }
     end
   end
+
+  it { should belong_to(:contactable) }
 end

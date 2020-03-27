@@ -3,4 +3,6 @@ class ContactInformation < ApplicationRecord
 
   validates :name, :email, length: { maximum: 1024 }
   validates :phone, :fax, :mobile, length: { maximum: 64 }
+
+  belongs_to :contactable, polymorphic: true
 end

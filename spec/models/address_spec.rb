@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
-  subject { FactoryBot.create(:address) }
+  subject { FactoryBot.build(:address) }
 
   describe 'validations' do
     it { should validate_presence_of(:line_1) }
@@ -14,4 +14,6 @@ RSpec.describe Address, type: :model do
 
     it { should validate_length_of(:zip_code).is_at_most(256) }
   end
+
+  it { should belong_to(:addressable) }
 end

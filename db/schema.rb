@@ -18,8 +18,11 @@ ActiveRecord::Schema.define(version: 2020_03_26_192638) do
     t.string "line_3", limit: 1024
     t.string "zip_code", limit: 256, null: false
     t.string "town", limit: 1024, null: false
+    t.integer "addressable_id", null: false
+    t.string "addressable_type", limit: 1024, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["addressable_id", "addressable_type"], name: "index_addresses_on_addressable_id_and_addressable_type"
   end
 
   create_table "contact_information", force: :cascade do |t|
@@ -28,8 +31,11 @@ ActiveRecord::Schema.define(version: 2020_03_26_192638) do
     t.string "fax", limit: 64
     t.string "mobile", limit: 64
     t.string "email", limit: 1024
+    t.integer "contactable_id", null: false
+    t.string "contactable_type", limit: 1024, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["contactable_id", "contactable_type"], name: "index_contact_information_contactable_foreign_key"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,12 +53,12 @@ ActiveRecord::Schema.define(version: 2020_03_26_192638) do
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.string "name"
     t.string "nickname"
     t.string "image"
     t.string "email"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
