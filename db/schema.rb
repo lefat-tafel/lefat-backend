@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_192638) do
+ActiveRecord::Schema.define(version: 2020_03_29_142208) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
     t.string "line_1", limit: 1024, null: false
@@ -36,6 +39,15 @@ ActiveRecord::Schema.define(version: 2020_03_26_192638) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contactable_id", "contactable_type"], name: "index_contact_information_contactable_foreign_key"
+  end
+
+  create_table "recipients", force: :cascade do |t|
+    t.integer "people_in_household", default: 1
+    t.string "state", limit: 200
+    t.integer "address_id", null: false
+    t.integer "contact_information_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,4 +80,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_192638) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "recipients", "addresses"
+  add_foreign_key "recipients", "contact_information"
 end
