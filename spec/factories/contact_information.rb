@@ -7,7 +7,7 @@ FactoryBot.define do
     email { Faker::Internet.email }
 
     factory :contact_information do
-      contactable factory: :user_without_contact_information
+      contactable factory: :user
     end
   end
 end

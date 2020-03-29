@@ -7,7 +7,7 @@ FactoryBot.define do
     town { Faker::Address.city }
 
     factory :address do
-      addressable factory: :user_without_address
+      addressable factory: :user
     end
   end
 end
