@@ -11,13 +11,5 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :address, :contact_information
 
-  validates :contact_information, presence: true
-
-  after_initialize do |user|
-    if new_record? && !user.contact_information.present?
-      user.build_contact_information
-    end
-  end
-
   default_scope -> { includes(:address, :contact_information) }
 end
