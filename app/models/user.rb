@@ -6,18 +6,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_one :contact_information, as: :contactable, dependent: :destroy
   has_one :address, as: :addressable, dependent: :destroy
+  has_one :contact_information, as: :contactable, dependent: :destroy
 
-  accepts_nested_attributes_for :contact_information
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, :contact_information
 
   validates :contact_information, presence: true
-  validates :address, presence: true
 
   after_initialize do |user|
-    user.build_address
-    user.build_contact_information
+    if new_record? && !user.contact_information.present?
+      user.build_contact_information
+    end
   end
 
   default_scope -> { includes(:address, :contact_information) }
