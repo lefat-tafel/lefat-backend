@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_192638) do
+ActiveRecord::Schema.define(version: 2020_03_29_140422) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "line_1", limit: 1024, null: false
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_03_26_192638) do
     t.text "tokens"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_admin"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -9,4 +9,6 @@ RSpec.describe User, type: :model do
     it { should accept_nested_attributes_for(:address) }
     it { should accept_nested_attributes_for(:contact_information) }
   end
+
+  it { should respond_to(:is_admin) }
 end

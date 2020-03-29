@@ -8,5 +8,6 @@
 User.create(
   email: 'admin@example.com',
   password: 'Please change me!',
-  password_confirmation: 'Please change me!'
+  password_confirmation: 'Please change me!',
+  is_admin: true
 )
