@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_142208) do
+ActiveRecord::Schema.define(version: 2020_03_30_035155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2020_03_29_142208) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["contactable_id", "contactable_type"], name: "index_contact_information_contactable_foreign_key"
+  end
+
+  create_table "donors", force: :cascade do |t|
+    t.string "name", limit: 1024
+    t.string "status", limit: 200
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "recipients", force: :cascade do |t|

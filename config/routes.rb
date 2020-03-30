@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     defaults format: :json do
       namespace :v1 do
         resources :recipients
+        resources :donors
       end
     end
   end
