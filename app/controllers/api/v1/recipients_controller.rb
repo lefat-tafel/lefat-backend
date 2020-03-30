@@ -1,5 +1,6 @@
 class Api::V1::RecipientsController < ApplicationController
   include StreetAddressable
+  include ContactInformationable
 
   def index
   end
@@ -12,6 +13,7 @@ class Api::V1::RecipientsController < ApplicationController
     recipient.people_in_household = params["people_in_household"]
     recipient.status = params["status"]
     recipient.addresses = [build_address(params["address"])]
+    recipient.contact_information = build_contact_information(params["contact_information"])
     if recipient.save!
       render json: {status: 'ok', code: 200}
     else
