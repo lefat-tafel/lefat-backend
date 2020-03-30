@@ -1,8 +1,16 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: lefat_dev
+  username: <%= ENV["LEFAT_DB_USER"] %>
+  password: <%= ENV["LEFAT_DB_PASSWORD"] %>
   pool: 5
-  username: postgres
-  password: Test1234
   host: localhost
+
+development:
+  <<: *default
+  database: <%= ENV["LEFAT_DATABASE"] %>
+
+test:
+  <<: *default
+  database: <%= ENV["LEFAT_TEST_DATABASE"] %>
+

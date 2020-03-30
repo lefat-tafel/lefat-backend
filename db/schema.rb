@@ -43,9 +43,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_142208) do
 
   create_table "recipients", force: :cascade do |t|
     t.integer "people_in_household", default: 1
-    t.string "state", limit: 200
-    t.integer "address_id", null: false
-    t.integer "contact_information_id", null: false
+    t.string "status", limit: 200
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -80,6 +78,4 @@ ActiveRecord::Schema.define(version: 2020_03_29_142208) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "recipients", "addresses"
-  add_foreign_key "recipients", "contact_information"
 end
