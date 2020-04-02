@@ -12,7 +12,7 @@ class Api::V1::RecipientsController < ApplicationController
     recipient = Recipient.new
     recipient.people_in_household = params["people_in_household"]
     recipient.status = params["status"]
-    recipient.addresses = [build_address(params["address"])]
+    recipient.address = build_address(params["address"])
     recipient.contact_information = build_contact_information(params["contact_information"])
     if recipient.save!
       render json: {status: 'ok', code: 200}
@@ -26,9 +26,6 @@ class Api::V1::RecipientsController < ApplicationController
 
   def destroy
   end
-
-  private
-
 
 end
 
