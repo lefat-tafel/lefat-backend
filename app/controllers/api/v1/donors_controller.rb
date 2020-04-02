@@ -12,7 +12,7 @@ class Api::V1::DonorsController < ApplicationController
     donor = Donor.new
     donor.name = params['name']
     donor.status = params["status"]
-    donor.addresses = [build_address(params["address"])]
+    donor.address = build_address(params["address"])
     donor.contact_information = build_contact_information(params["contact_information"])
     if donor.save!
       render json: {status: 'ok', code: 200}
