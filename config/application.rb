@@ -36,7 +36,7 @@ module LefatRuby
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'localhost:*'
+        origins %r{^https?://localhost:\d{1,5}}
         resource '*', headers: :any, methods: :any
       end
     end
